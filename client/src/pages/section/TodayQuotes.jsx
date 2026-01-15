@@ -5,7 +5,7 @@ const TodayQuotes = () => {
   const author = "Shashwat Srivastava";
   return (
     <section className="mx-8 mt-4 drop-shadow-xl">
-      <div className="bg-slate-100 text-slate-900 border-4 rounded-xl p-8 text-center">
+      <div className="bg-slate-100 text-slate-900  border-4 rounded-xl p-8 text-center">
         
         <h2 className="text-5xl font-bold mb-6">
           Quote of the Day

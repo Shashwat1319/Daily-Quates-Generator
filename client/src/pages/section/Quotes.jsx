@@ -31,6 +31,11 @@ const Quotes = () => {
     text: "If you are not willing to risk the usual, you will have to settle for the ordinary.",
     author: "Jim Rohn",
   },
+  {
+    id: 6,
+    text: "First learn then remove l",
+    author:"Aman Singh"
+  }
 ];
 
 
