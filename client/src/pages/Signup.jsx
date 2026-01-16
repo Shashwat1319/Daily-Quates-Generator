@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import axios from "axios"
 
 const signupSchema = yup.object({
+    name : yup.string().required("username is required"),
     email: yup.string().email("Invalid Email").required("email is required").trim(),
     password:yup.string().matches(/^\d{6}$/, "Password must be exactly 6 digits").length(6,"Password exactly 6 Digits").required("password is required")
 });
@@ -18,13 +19,13 @@ const Signup = () => {
 
     const Submit=async(data)=>{
         try {
-            const response = await axios.post("http://localhost:8000/api/auth/signup",data);
+            const response = await axios.post("http://localhost:7000/api/auth/register",data);
             console.log(response.data.data)
-            if(response.status==200){
+            if(response.status==201){
                 Swal.fire({
                     title:"Signup",
                     icon:"success",
-                    text:"Signup Succesfully"
+                    text : response.data.message,
                 })
             }
         } catch (error) {
@@ -45,6 +46,18 @@ const Signup = () => {
         </p>
       </div>
       <form  className="mx-auto mb-0 mt-8 max-w-md space-y-4" onSubmit={handleSubmit(Submit)}>
+         <div>
+          <label className="sr-only" htmlFor="name" >Name</label>
+          <div className="relative">
+            <input placeholder="Enter your Name" {...register("name")}   className="w-full rounded-lg border-gray-300 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent" id="name" type="text" />
+            {errors.name && <p className='ms-1 text-red-500'>{errors.name.message}</p>}
+            <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
         <div>
           <label className="sr-only" htmlFor="email" >Email</label>
           <div className="relative">
